@@ -1,4 +1,5 @@
-# EXNO:4-DS
+# Feature-Scaling-and-Selection-Completion-requirements
+
 # AIM:
 To read the given data and perform Feature Scaling and Feature Selection process and save the
 data to a file.
@@ -24,6 +25,80 @@ The feature selection techniques used are:
 3.Embedded Method
 
 # CODING AND OUTPUT:
-       # INCLUDE YOUR CODING AND OUTPUT SCREENSHOTS HERE
+```
+import pandas as pd
+from scipy import stats
+import numpy as np
+
+df = pd.read_csv('/content/bmi.csv')
+
+df.head()
+
+df.dropna()
+
+max_vals = np.max(np.abs(df[['Height','Weight']]))
+max_vals
+
+df1 = pd.read_csv('/content/bmi.csv')
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+df1[['Height','Weight']] = sc.fit_transform(df1[['Height','Weight']])
+df1.head(10)
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+df[['Height','Weight']] = scaler.fit_transform(df[['Height','Weight']])
+df.head(10)
+
+df2 = pd.read_csv('/content/bmi.csv')
+
+from sklearn.preprocessing import Normalizer
+scaler = Normalizer()
+df2[['Height','Weight']] = scaler.fit_transform(df2[['Height','Weight']])
+df2
+
+df3 = pd.read_csv('/content/bmi.csv')
+
+from sklearn.preprocessing import MaxAbsScaler
+scaler = MaxAbsScaler()
+df3[['Height','Weight']] = scaler.fit_transform(df3[['Height','Weight']])
+df3
+
+from sklearn.preprocessing import RobustScaler
+scaler = RobustScaler()
+df4 = pd.read_csv('/content/bmi.csv')
+df4[['Height','Weight']] = scaler.fit_transform(df4[['Height','Weight']])
+df4.head()
+
+from scipy.stats import chi2_contingency
+import seaborn as sns
+tips = sns.load_dataset('tips')
+tips.head()
+
+contigency_table = pd.crosstab(tips['sex'],tips['time'])
+contigency_table
+
+chi2 , p , _ , _ , = chi2_contingency(contigency_table)
+print(f"Chi-square value: {chi2}")
+print(f"P-value: {p}")
+
+from sklearn.feature_selection import SelectKBest, mutual_info_classif
+data = {
+    'Feature1': [1, 2, 3, 4, 5],
+    'Feature2': ['A', 'B' , 'C' , 'A' , 'B'],
+    'Feature3': [0, 1, 1, 0, 1],
+    'Target': [0, 1, 1, 0, 1]
+}
+df = pd.DataFrame(data)
+X = df[['Feature1', 'Feature3']]
+y = df['Target']
+selector = SelectKBest(score_func=mutual_info_classif, k=1)
+X_new = selector.fit_transform(X, y)
+selected_features_indices = selector.get_support(indices = True)
+selected_features = X.columns[selected_features_indices]
+print("Selected Features")
+print(selected_features)
+```
 # RESULT:
        # INCLUDE YOUR RESULT HERE
