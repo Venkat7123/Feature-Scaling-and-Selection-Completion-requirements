@@ -1,4 +1,4 @@
-# Feature-Scaling-and-Selection-Completion-requirements
+# Feature-Scaling-and-Selection-Completion
 
 # AIM:
 To read the given data and perform Feature Scaling and Feature Selection process and save the
@@ -29,60 +29,77 @@ The feature selection techniques used are:
 import pandas as pd
 from scipy import stats
 import numpy as np
-
 df = pd.read_csv('/content/bmi.csv')
-
 df.head()
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102521.png>)
+```
 df.dropna()
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102548.png>)
+```
 max_vals = np.max(np.abs(df[['Height','Weight']]))
 max_vals
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102641.png>)
+```
 df1 = pd.read_csv('/content/bmi.csv')
-
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 df1[['Height','Weight']] = sc.fit_transform(df1[['Height','Weight']])
 df1.head(10)
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102647.png>)
+```
 from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler()
 df[['Height','Weight']] = scaler.fit_transform(df[['Height','Weight']])
 df.head(10)
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102651.png>)
+```
 df2 = pd.read_csv('/content/bmi.csv')
-
 from sklearn.preprocessing import Normalizer
 scaler = Normalizer()
 df2[['Height','Weight']] = scaler.fit_transform(df2[['Height','Weight']])
 df2
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102656.png>)
+```
 df3 = pd.read_csv('/content/bmi.csv')
-
 from sklearn.preprocessing import MaxAbsScaler
 scaler = MaxAbsScaler()
 df3[['Height','Weight']] = scaler.fit_transform(df3[['Height','Weight']])
 df3
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102700.png>)
+```
 from sklearn.preprocessing import RobustScaler
 scaler = RobustScaler()
 df4 = pd.read_csv('/content/bmi.csv')
 df4[['Height','Weight']] = scaler.fit_transform(df4[['Height','Weight']])
 df4.head()
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102706.png>)
+```
 from scipy.stats import chi2_contingency
 import seaborn as sns
 tips = sns.load_dataset('tips')
 tips.head()
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102710.png>)
+```
 contigency_table = pd.crosstab(tips['sex'],tips['time'])
 contigency_table
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102715.png>)
+```
 chi2 , p , _ , _ , = chi2_contingency(contigency_table)
 print(f"Chi-square value: {chi2}")
 print(f"P-value: {p}")
-
+```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102719.png>)
+```
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
 data = {
     'Feature1': [1, 2, 3, 4, 5],
@@ -100,5 +117,7 @@ selected_features = X.columns[selected_features_indices]
 print("Selected Features")
 print(selected_features)
 ```
+![alt text](<Output Screenshots/Screenshot 2025-05-03 102724.png>)
+
 # RESULT:
-       # INCLUDE YOUR RESULT HERE
+Feature Scaling and Selection Completion was completed and the results have been successfully verified.
